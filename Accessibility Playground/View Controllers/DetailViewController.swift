@@ -11,6 +11,8 @@ class DetailViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    title = "Detail VC"
+
     view.backgroundColor = .systemPink
   }
 }
