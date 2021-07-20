@@ -14,12 +14,23 @@ class DetailViewController: UITableViewController {
     title = "Detail VC"
 
     view.backgroundColor = .systemPink
+
+    tableView = UITableView.init(frame: CGRect.zero, style: .grouped)
+    tableView.backgroundColor = .systemPink
   }
 }
 
 extension DetailViewController {
+  override func numberOfSections(in tableView: UITableView) -> Int {
+    2
+  }
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    10
+    5
+  }
+
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    "Section \(section)"
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -27,7 +38,7 @@ extension DetailViewController {
                                reuseIdentifier: "DetailViewControllerCell")
 
     cell.backgroundColor = .systemPink
-    cell.textLabel!.text = "Row \(indexPath.row)"
+    cell.textLabel!.text = "Section \(indexPath.section), Row \(indexPath.row)"
 
     return cell
   }
