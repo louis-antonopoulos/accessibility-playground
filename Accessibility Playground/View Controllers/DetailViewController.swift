@@ -7,10 +7,26 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
     view.backgroundColor = .systemPink
+  }
+}
+
+extension DetailViewController {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    10
+  }
+
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1,
+                               reuseIdentifier: "DetailViewControllerCell")
+
+    cell.backgroundColor = .systemPink
+    cell.textLabel!.text = "Row \(indexPath.row)"
+
+    return cell
   }
 }
