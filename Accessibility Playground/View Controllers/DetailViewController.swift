@@ -8,15 +8,17 @@
 import UIKit
 
 class DetailViewController: UITableViewController {
+  private let mainColor: UIColor = .systemPink
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
     title = "Detail VC"
 
-    view.backgroundColor = .systemPink
+    view.backgroundColor = mainColor
 
     tableView = UITableView.init(frame: CGRect.zero, style: .grouped)
-    tableView.backgroundColor = .systemPink
+    tableView.backgroundColor = mainColor
   }
 }
 
@@ -37,7 +39,7 @@ extension DetailViewController {
     let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1,
                                reuseIdentifier: "DetailViewControllerCell")
 
-    cell.backgroundColor = .systemPink
+    cell.backgroundColor = mainColor
     cell.textLabel!.text = "Section \(indexPath.section), Row \(indexPath.row)"
 
     return cell
