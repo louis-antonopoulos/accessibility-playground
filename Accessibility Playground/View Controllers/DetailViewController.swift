@@ -7,35 +7,48 @@
 
 import UIKit
 
-class DetailViewController: UITableViewController {
+class DetailViewController: UIViewController {
   private let mainColor: UIColor = .white
+  private var tableView = UITableView.init(frame: CGRect.zero, style: .grouped)
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     title = "Detail VC"
-
     view.backgroundColor = mainColor
 
-    tableView = UITableView.init(frame: CGRect.zero, style: .grouped)
+    setupTableView()
+  }
+
+  private func setupTableView() {
     tableView.backgroundColor = mainColor
+    tableView.dataSource = self
+    tableView.delegate = self
+
+    view.addSubview(tableView)
+
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
   }
 }
 
-extension DetailViewController {
-  override func numberOfSections(in tableView: UITableView) -> Int {
+extension DetailViewController: UITableViewDataSource {
+  func numberOfSections(in tableView: UITableView) -> Int {
     2
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     3
   }
 
-  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     "S \(section)"
   }
 
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1,
                                reuseIdentifier: "DetailViewControllerCell")
 
@@ -45,3 +58,5 @@ extension DetailViewController {
     return cell
   }
 }
+
+extension DetailViewController: UITableViewDelegate {}
