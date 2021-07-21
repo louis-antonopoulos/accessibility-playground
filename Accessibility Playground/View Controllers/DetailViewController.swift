@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailViewController: UITableViewController {
-  private let mainColor: UIColor = .systemPink
+  private let mainColor: UIColor = .white
 
   override func viewDidLoad() {
     super.viewDidLoad()
