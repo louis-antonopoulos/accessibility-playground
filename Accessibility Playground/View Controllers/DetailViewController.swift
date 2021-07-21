@@ -11,6 +11,7 @@ class DetailViewController: UIViewController {
   private let label1 = UILabel()
   private let mainColor: UIColor = .white
   private let tableView1 = UITableView.init(frame: CGRect.zero, style: .grouped)
+  private let tableView2 = UITableView.init(frame: CGRect.zero, style: .grouped)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -19,7 +20,7 @@ class DetailViewController: UIViewController {
     view.backgroundColor = mainColor
 
     setupLabel()
-    setupTableView()
+    setupTableViews()
     setupAccessibility()
   }
 
@@ -40,18 +41,24 @@ class DetailViewController: UIViewController {
     label1.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
   }
 
-  private func setupTableView() {
-    tableView1.backgroundColor = mainColor
-    tableView1.dataSource = self
-    tableView1.delegate = self
+  private func setupTableViews() {
+    [tableView1, tableView2].forEach { tableView in
+      tableView.backgroundColor = mainColor
+      tableView.dataSource = self
+      tableView.delegate = self
 
-    view.addSubview(tableView1)
+      view.addSubview(tableView)
+      tableView.translatesAutoresizingMaskIntoConstraints = false
+      tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+      tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    }
 
-    tableView1.translatesAutoresizingMaskIntoConstraints = false
     tableView1.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 20).isActive = true
-    tableView1.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-    tableView1.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    tableView1.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    tableView2.topAnchor.constraint(equalTo: tableView1.bottomAnchor, constant: 20).isActive = true
+
+    tableView2.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+    tableView1.heightAnchor.constraint(equalTo: tableView2.heightAnchor).isActive = true
   }
 }
 
