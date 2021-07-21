@@ -32,7 +32,7 @@ extension DetailViewController {
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    "Section \(section)"
+    "S \(section)"
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,7 +40,7 @@ extension DetailViewController {
                                reuseIdentifier: "DetailViewControllerCell")
 
     cell.backgroundColor = mainColor
-    cell.textLabel!.text = "Section \(indexPath.section), Row \(indexPath.row)"
+    cell.textLabel!.text = "\(indexPath.section), \(indexPath.row)"
 
     return cell
   }
