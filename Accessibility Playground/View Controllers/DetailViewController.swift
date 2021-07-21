@@ -29,7 +29,7 @@ class DetailViewController: UIViewController {
   }
 
   private func setupLabel() {
-    label1.text = "Some Label"
+    label1.text = "A Header Label"
 
     label1.textColor = .black
 
