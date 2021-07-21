@@ -8,8 +8,9 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+  private let label1 = UILabel()
   private let mainColor: UIColor = .white
-  private var tableView = UITableView.init(frame: CGRect.zero, style: .grouped)
+  private let tableView = UITableView.init(frame: CGRect.zero, style: .grouped)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -17,7 +18,26 @@ class DetailViewController: UIViewController {
     title = "Detail VC"
     view.backgroundColor = mainColor
 
+    setupLabel()
     setupTableView()
+    setupAccessibility()
+  }
+
+  private func setupAccessibility() {
+    label1.accessibilityTraits = .header
+  }
+
+  private func setupLabel() {
+    label1.text = "Some Label"
+
+    label1.textColor = .black
+
+    view.addSubview(label1)
+
+    label1.translatesAutoresizingMaskIntoConstraints = false
+    label1.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+    label1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+    label1.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
   }
 
   private func setupTableView() {
@@ -28,7 +48,7 @@ class DetailViewController: UIViewController {
     view.addSubview(tableView)
 
     tableView.translatesAutoresizingMaskIntoConstraints = false
-    tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    tableView.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 20).isActive = true
     tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
     tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
