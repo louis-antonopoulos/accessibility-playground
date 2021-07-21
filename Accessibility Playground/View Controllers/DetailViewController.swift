@@ -10,7 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
   private let label1 = UILabel()
   private let mainColor: UIColor = .white
-  private let tableView = UITableView.init(frame: CGRect.zero, style: .grouped)
+  private let tableView1 = UITableView.init(frame: CGRect.zero, style: .grouped)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,17 +41,17 @@ class DetailViewController: UIViewController {
   }
 
   private func setupTableView() {
-    tableView.backgroundColor = mainColor
-    tableView.dataSource = self
-    tableView.delegate = self
+    tableView1.backgroundColor = mainColor
+    tableView1.dataSource = self
+    tableView1.delegate = self
 
-    view.addSubview(tableView)
+    view.addSubview(tableView1)
 
-    tableView.translatesAutoresizingMaskIntoConstraints = false
-    tableView.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 20).isActive = true
-    tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-    tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    tableView1.translatesAutoresizingMaskIntoConstraints = false
+    tableView1.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 20).isActive = true
+    tableView1.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    tableView1.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    tableView1.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
   }
 }
 
