@@ -28,7 +28,7 @@ extension DetailViewController {
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    5
+    3
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
