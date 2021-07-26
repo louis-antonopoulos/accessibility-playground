@@ -9,9 +9,14 @@ import UIKit
 
 class DetailViewController: UIViewController {
   private let label1 = UILabel()
+  private let label2 = UILabel()
   private let mainColor: UIColor = .white
   private let tableView1 = UITableView.init(frame: CGRect.zero, style: .grouped)
   private let tableView2 = UITableView.init(frame: CGRect.zero, style: .grouped)
+
+  private var allControls: [UIView] = []
+  private var labels: [UILabel] = []
+  private var tableViews: [UITableView] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -19,33 +24,44 @@ class DetailViewController: UIViewController {
     title = "Detail VC"
     view.backgroundColor = mainColor
 
-    setupLabel()
+    setupCollections()
+    addSubviews()
+    setupLabels()
     setupTableViews()
+    setupYConstraints()
     setupAccessibility()
   }
 
-  private func setupAccessibility() {
-    label1.accessibilityTraits = .header
+  private func setupCollections() {
+    labels = [label1, label2]
+    tableViews = [tableView1, tableView2]
+    allControls = labels + tableViews
   }
 
-  private func setupLabel() {
-    label1.text = "A Header Label"
+  private func addSubviews() {
+    allControls.forEach { control in
+      view.addSubview(control)
+    }
+  }
 
-    label1.textColor = .black
+  private func setupLabels() {
+    label1.text = "Header Label 1"
+    label2.text = "Header Label 2"
 
-    view.addSubview(label1)
+    labels.forEach { label in
+      label.textColor = .purple
+      view.addSubview(label)
+      label.translatesAutoresizingMaskIntoConstraints = false
 
-    label1.translatesAutoresizingMaskIntoConstraints = false
-
-    NSLayoutConstraint.activate([
-      label1.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-      label1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-      label1.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
-    ])
+      NSLayoutConstraint.activate([
+        label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
+      ])
+    }
   }
 
   private func setupTableViews() {
-    [tableView1, tableView2].forEach { tableView in
+    tableViews.forEach { tableView in
       tableView.backgroundColor = mainColor
       tableView.dataSource = self
       tableView.delegate = self
@@ -58,13 +74,25 @@ class DetailViewController: UIViewController {
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
       ])
     }
+  }
 
+  private func setupYConstraints() {
     NSLayoutConstraint.activate([
+      tableView2.heightAnchor.constraint(equalTo: tableView1.heightAnchor),
+
+      label1.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
       tableView1.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 20),
       tableView2.topAnchor.constraint(equalTo: tableView1.bottomAnchor, constant: 20),
-      tableView2.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      tableView2.heightAnchor.constraint(equalTo: tableView1.heightAnchor)
+      // tableView2.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      label2.topAnchor.constraint(equalTo: tableView2.bottomAnchor, constant: 20),
+      label2.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
     ])
+  }
+
+  private func setupAccessibility() {
+    labels.forEach { label in
+      label.accessibilityTraits.insert(.header)
+    }
   }
 }
 
@@ -74,7 +102,7 @@ extension DetailViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    3
+    2
   }
 
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
