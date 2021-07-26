@@ -60,16 +60,22 @@ extension DetailViewController: UITableViewDataSource {
 extension DetailViewController: UITableViewDelegate {}
 
 private extension DetailViewController {
-  func setupCollections() {
-    labels = [label1, label2]
-    tableViews = [tableView1, tableView2]
-    allControls = labels + tableViews
-  }
-
   func addSubviews() {
     allControls.forEach { control in
       view.addSubview(control)
     }
+  }
+
+  func setupAccessibility() {
+    labels.forEach { label in
+      label.accessibilityTraits.insert(.header)
+    }
+  }
+
+  func setupCollections() {
+    labels = [label1, label2]
+    tableViews = [tableView1, tableView2]
+    allControls = labels + tableViews
   }
 
   func setupLabels() {
@@ -115,11 +121,5 @@ private extension DetailViewController {
       label2.topAnchor.constraint(equalTo: tableView2.bottomAnchor, constant: 20),
       label2.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
     ])
-  }
-
-  func setupAccessibility() {
-    labels.forEach { label in
-      label.accessibilityTraits.insert(.header)
-    }
   }
 }
