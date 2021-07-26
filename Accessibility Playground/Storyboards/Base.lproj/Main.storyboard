@@ -108,7 +108,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oM0-u9-BfH">
                                 <rect key="frame" x="20" y="792" width="374" height="30"/>
-                                <state key="normal" title="View 2"/>
+                                <state key="normal" title="Detail VC"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MNP-sv-aFY"/>
                                 </connections>
