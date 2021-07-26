@@ -31,69 +31,6 @@ class DetailViewController: UIViewController {
     setupYConstraints()
     setupAccessibility()
   }
-
-  private func setupCollections() {
-    labels = [label1, label2]
-    tableViews = [tableView1, tableView2]
-    allControls = labels + tableViews
-  }
-
-  private func addSubviews() {
-    allControls.forEach { control in
-      view.addSubview(control)
-    }
-  }
-
-  private func setupLabels() {
-    label1.text = "Header Label 1"
-    label2.text = "Header Label 2"
-
-    labels.forEach { label in
-      label.textColor = .purple
-      view.addSubview(label)
-      label.translatesAutoresizingMaskIntoConstraints = false
-
-      NSLayoutConstraint.activate([
-        label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
-      ])
-    }
-  }
-
-  private func setupTableViews() {
-    tableViews.forEach { tableView in
-      tableView.backgroundColor = mainColor
-      tableView.dataSource = self
-      tableView.delegate = self
-
-      view.addSubview(tableView)
-      tableView.translatesAutoresizingMaskIntoConstraints = false
-
-      NSLayoutConstraint.activate([
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
-      ])
-    }
-  }
-
-  private func setupYConstraints() {
-    NSLayoutConstraint.activate([
-      tableView2.heightAnchor.constraint(equalTo: tableView1.heightAnchor),
-
-      label1.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-      tableView1.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 20),
-      tableView2.topAnchor.constraint(equalTo: tableView1.bottomAnchor, constant: 20),
-      // tableView2.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      label2.topAnchor.constraint(equalTo: tableView2.bottomAnchor, constant: 20),
-      label2.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-    ])
-  }
-
-  private func setupAccessibility() {
-    labels.forEach { label in
-      label.accessibilityTraits.insert(.header)
-    }
-  }
 }
 
 extension DetailViewController: UITableViewDataSource {
@@ -121,3 +58,68 @@ extension DetailViewController: UITableViewDataSource {
 }
 
 extension DetailViewController: UITableViewDelegate {}
+
+private extension DetailViewController {
+  func setupCollections() {
+    labels = [label1, label2]
+    tableViews = [tableView1, tableView2]
+    allControls = labels + tableViews
+  }
+
+  func addSubviews() {
+    allControls.forEach { control in
+      view.addSubview(control)
+    }
+  }
+
+  func setupLabels() {
+    label1.text = "Header Label 1"
+    label2.text = "Header Label 2"
+
+    labels.forEach { label in
+      label.textColor = .purple
+      view.addSubview(label)
+      label.translatesAutoresizingMaskIntoConstraints = false
+
+      NSLayoutConstraint.activate([
+        label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
+      ])
+    }
+  }
+
+  func setupTableViews() {
+    tableViews.forEach { tableView in
+      tableView.backgroundColor = mainColor
+      tableView.dataSource = self
+      tableView.delegate = self
+
+      view.addSubview(tableView)
+      tableView.translatesAutoresizingMaskIntoConstraints = false
+
+      NSLayoutConstraint.activate([
+        tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+        tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
+      ])
+    }
+  }
+
+  func setupYConstraints() {
+    NSLayoutConstraint.activate([
+      tableView2.heightAnchor.constraint(equalTo: tableView1.heightAnchor),
+
+      label1.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+      tableView1.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 20),
+      tableView2.topAnchor.constraint(equalTo: tableView1.bottomAnchor, constant: 20),
+      // tableView2.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      label2.topAnchor.constraint(equalTo: tableView2.bottomAnchor, constant: 20),
+      label2.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+    ])
+  }
+
+  func setupAccessibility() {
+    labels.forEach { label in
+      label.accessibilityTraits.insert(.header)
+    }
+  }
+}
