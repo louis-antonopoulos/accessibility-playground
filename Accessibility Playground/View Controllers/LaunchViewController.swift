@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LaunchViewController: UIViewController {
   @IBOutlet weak var heading1: UILabel!
   @IBOutlet weak var heading2: UILabel!
   @IBOutlet weak var heading3: UILabel!
@@ -16,11 +16,7 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = "Wat"
-
-    let someView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
-    someView.backgroundColor = .blue
-    someView.accessibilityLabel = "Title View"
+    title = "Launch VC"
 
     headings.forEach { heading in
       heading.accessibilityTraits = .header
